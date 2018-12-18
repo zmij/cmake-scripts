@@ -4,10 +4,15 @@ if (TARGET libmetapushkin)
     return()
 endif()
 
+set(METAPUSHKIN_TAG develop)
+if (CMAKE_CXX_STANDARD EQUAL 17)
+  set(METAPUSHKIN_TAG c++17)
+endif()
+
 ExternalProject_Add(
         metapushkin
         GIT_REPOSITORY https://github.com/zmij/metapushkin.git
-        GIT_TAG develop
+        GIT_TAG ${METAPUSHKIN_TAG}
         TIMEOUT 10
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}
         CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
